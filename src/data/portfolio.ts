@@ -1,9 +1,3 @@
-/**
- * Central portfolio data for Yogeswari Boreddi.
- * Keep personal details, projects, skills and career information here
- * so the portfolio components use one consistent source.
- */
-
 export type Palette = {
   from: string;
   via: string;
@@ -57,6 +51,11 @@ const crimson: Palette = {
 // TYPES
 // -----------------------------------------------------------------------------
 
+export type Metric = {
+  label: string;
+  value: string;
+};
+
 export type Project = {
   id: string;
   title: string;
@@ -66,7 +65,8 @@ export type Project = {
   stack: string[];
   build: string[];
   features: string[];
-  metrics: string[];
+  metrics: Metric[];
+  github?: string;
   palette: Palette;
   motif: string;
 };
@@ -77,6 +77,71 @@ export type Achievement = {
   org: string;
   detail: string;
 };
+
+export type Certification = {
+  issuer: string;
+  name: string;
+  link?: string;
+};
+
+export type Skill = {
+  name: string;
+  mono: string;
+  note?: string;
+};
+
+export type SkillCategory = {
+  id: string;
+  title: string;
+  subtitle: string;
+  skills: Skill[];
+};
+
+export type Episode = {
+  code: string;
+  title: string;
+  description: string;
+  tags: string[];
+  runtime: string;
+  palette: Palette;
+};
+
+export type Season = {
+  number: number;
+  title: string;
+  period: string;
+  synopsis: string;
+  episodes: Episode[];
+};
+
+export type TopPick = {
+  label: string;
+  title: string;
+  detail: string;
+  palette: Palette;
+};
+
+export type IntroSlide = {
+  kicker: string;
+  title: string;
+  lines: string[];
+  chips?: string[];
+};
+
+export type ProfileId =
+  | 'yogeswari'
+  | 'recruiter'
+  | 'developer'
+  | 'creative';
+
+export type SectionId =
+  | 'about'
+  | 'journey'
+  | 'originals'
+  | 'picks'
+  | 'skills'
+  | 'moments'
+  | 'story';
 
 // -----------------------------------------------------------------------------
 // PROFILE
@@ -222,6 +287,10 @@ export const internships = [
   },
 ];
 
+// -----------------------------------------------------------------------------
+// PROJECTS
+// -----------------------------------------------------------------------------
+
 export const projects: Project[] = [
   {
     id: 'fake-news-analysis',
@@ -254,7 +323,6 @@ export const projects: Project[] = [
     palette: violet,
     motif: 'ai',
   },
-
   {
     id: 'personal-expenses',
     title: 'Personal Expenses Tracker',
@@ -286,7 +354,6 @@ export const projects: Project[] = [
     palette: jade,
     motif: 'flow',
   },
-
   {
     id: 'employee-feedback',
     title: 'Employee Feedback System',
@@ -342,7 +409,6 @@ export const projects: Project[] = [
     palette: pink,
     motif: 'flow',
   },
-
   {
     id: 'order-management',
     title: 'Order Management Application',
@@ -373,7 +439,6 @@ export const projects: Project[] = [
     palette: ocean,
     motif: 'flow',
   },
-
   {
     id: 'ecommerce-website',
     title: 'E-Commerce Website Application',
@@ -405,7 +470,6 @@ export const projects: Project[] = [
     palette: pink,
     motif: 'flow',
   },
-
   {
     id: 'donation-management',
     title: 'Donation Management System using Zoho Applications',
@@ -436,7 +500,6 @@ export const projects: Project[] = [
     palette: jade,
     motif: 'flow',
   },
-
   {
     id: 'diwali-history',
     title: 'Diwali History Website',
@@ -471,7 +534,6 @@ export const projects: Project[] = [
 
 // -----------------------------------------------------------------------------
 // ACHIEVEMENTS
-// IMPORTANT: This export fixes the ResumeViewer.tsx error.
 // -----------------------------------------------------------------------------
 
 export const achievements: Achievement[] = [
@@ -502,12 +564,6 @@ export const achievements: Achievement[] = [
 // CERTIFICATIONS
 // -----------------------------------------------------------------------------
 
-export type Certification = {
-  issuer: string;
-  name: string;
-  link?: string;
-};
-
 export const certifications: Certification[] = [
   {
     issuer: 'Internship Studio',
@@ -534,19 +590,6 @@ export const certifications: Certification[] = [
 // -----------------------------------------------------------------------------
 // SKILLS
 // -----------------------------------------------------------------------------
-
-export type Skill = {
-  name: string;
-  mono: string;
-  note?: string;
-};
-
-export type SkillCategory = {
-  id: string;
-  title: string;
-  subtitle: string;
-  skills: Skill[];
-};
 
 export const skillCategories: SkillCategory[] = [
   {
@@ -684,23 +727,6 @@ export const skillEvidence: Record<string, string[]> = {
 // JOURNEY EPISODES
 // -----------------------------------------------------------------------------
 
-export type Episode = {
-  code: string;
-  title: string;
-  description: string;
-  tags: string[];
-  runtime: string;
-  palette: Palette;
-};
-
-export type Season = {
-  number: number;
-  title: string;
-  period: string;
-  synopsis: string;
-  episodes: Episode[];
-};
-
 export const seasons: Season[] = [
   {
     number: 1,
@@ -816,13 +842,6 @@ export const seasons: Season[] = [
 // TOP PICKS
 // -----------------------------------------------------------------------------
 
-export type TopPick = {
-  label: string;
-  title: string;
-  detail: string;
-  palette: Palette;
-};
-
 export const topPicks: TopPick[] = [
   {
     label: 'Business Applications',
@@ -859,13 +878,6 @@ export const topPicks: TopPick[] = [
 // -----------------------------------------------------------------------------
 // CINEMATIC INTRO SLIDES
 // -----------------------------------------------------------------------------
-
-export type IntroSlide = {
-  kicker: string;
-  title: string;
-  lines: string[];
-  chips?: string[];
-};
 
 export const introSlides: IntroSlide[] = [
   {
@@ -940,23 +952,8 @@ export const introSlides: IntroSlide[] = [
 ];
 
 // -----------------------------------------------------------------------------
-// VIEWER PROFILES AND SECTION NAVIGATION
+// VIEWER PROFILES
 // -----------------------------------------------------------------------------
-
-export type ProfileId =
-  | 'yogeswari'
-  | 'recruiter'
-  | 'developer'
-  | 'creative';
-
-export type SectionId =
-  | 'about'
-  | 'journey'
-  | 'originals'
-  | 'picks'
-  | 'skills'
-  | 'moments'
-  | 'story';
 
 export const viewerProfiles: {
   id: ProfileId;
@@ -1051,7 +1048,7 @@ export const sectionMeta: Record<
     card: 'My Journey',
     meta: `${seasons.length} Chapters • ${seasons.reduce(
       (total, season) => total + season.episodes.length,
-      0
+      0,
     )} Episodes`,
     palette: amber,
   },

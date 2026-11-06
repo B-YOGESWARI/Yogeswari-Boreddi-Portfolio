@@ -150,7 +150,6 @@ export default function Hero({
   );
 
   // Portfolio information
-  const graduationPeriod = education[0]?.period ?? '2022 – 2026';
 
   const meta = [
     'B.Tech Computer Science',
