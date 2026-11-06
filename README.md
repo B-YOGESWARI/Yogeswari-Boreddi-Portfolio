@@ -167,7 +167,7 @@ The portfolio showcases work and experience across:
 
 **Yogeswari Boreddi**
 
-- Portfolio: https://yogeswari-portfolio.netlify.app/
+- Portfolio: https://boreddi-yogeswari-portfolio.netlify.app/
 - LinkedIn: https://www.linkedin.com/in/yogeswari-boreddi-2161022a7/
 - GitHub: https://github.com/B-YOGESWARI
 - Email: yogeswariboreddi@gmail.com
