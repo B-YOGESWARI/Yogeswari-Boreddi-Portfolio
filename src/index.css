@@ -1,0 +1,310 @@
+
+@import 'tailwindcss';
+
+@theme {
+  /* Background palette */
+  --color-ink: #07060b;
+  --color-ink-2: #100d16;
+  --color-ink-3: #191321;
+
+  /* Accent palette */
+  --color-crimson: #e83e91;
+  --color-crimson-2: #ff4fa3;
+  --color-pink: #ff4fa3;
+  --color-purple: #b98bff;
+  --color-cyan: #4cc9ff;
+
+  /* Text palette */
+  --color-bone: #f4f1ec;
+  --color-mist: #aaa5b4;
+  --color-smoke: #706b7a;
+
+  /* Typography */
+  --font-display: 'Bebas Neue', 'Oswald', Impact, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Animation easing */
+  --ease-cine: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: dark;
+  --gutter: clamp(16px, 4vw, 56px);
+}
+
+html {
+  position: relative;
+  background: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+html.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(
+      ellipse at 75% 10%,
+      rgba(112, 35, 104, 0.10),
+      transparent 38%
+    ),
+    var(--color-ink);
+
+  color: var(--color-bone);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-pink);
+  color: #ffffff;
+}
+
+.gutter {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* --------------------------------------------------
+   FILM GRAIN
+-------------------------------------------------- */
+
+.grain {
+  position: fixed;
+  inset: -50%;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0.045;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  animation: grain 1.2s steps(6) infinite;
+}
+
+@keyframes grain {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(-3%, 2%);
+  }
+
+  40% {
+    transform: translate(2%, -3%);
+  }
+
+  60% {
+    transform: translate(-2%, -1%);
+  }
+
+  80% {
+    transform: translate(3%, 3%);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* --------------------------------------------------
+   HORIZONTAL SCROLL RAILS
+-------------------------------------------------- */
+
+.rail {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+/* --------------------------------------------------
+   CUSTOM CURSOR
+-------------------------------------------------- */
+
+.has-custom-cursor,
+.has-custom-cursor a,
+.has-custom-cursor button,
+.has-custom-cursor [role='button'] {
+  cursor: none;
+}
+
+/* --------------------------------------------------
+   OUTLINED TYPOGRAPHY
+-------------------------------------------------- */
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(244, 241, 236, 0.28);
+}
+
+/* --------------------------------------------------
+   GLASS EFFECT
+-------------------------------------------------- */
+
+.glass {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.025)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+/* --------------------------------------------------
+   FOCUS ACCESSIBILITY
+-------------------------------------------------- */
+
+.focus-ring:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-crimson-2);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* --------------------------------------------------
+   CINEMATIC LIGHT STREAK
+-------------------------------------------------- */
+
+.light-streak {
+  position: absolute;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 79, 163, 0.9),
+    transparent
+  );
+
+  filter: blur(0.4px);
+  animation: streak 7s var(--ease-cine) infinite;
+  opacity: 0;
+}
+
+@keyframes streak {
+  0% {
+    transform: translateX(-40%) scaleX(0.4);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.9;
+  }
+
+  45% {
+    transform: translateX(40%) scaleX(1);
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------
+   SHIMMER TEXT
+-------------------------------------------------- */
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #f4f1ec 0%,
+    #f4f1ec 40%,
+    #ff8ac4 50%,
+    #f4f1ec 60%,
+    #f4f1ec 100%
+  );
+
+  background-size: 200% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  animation: shimmer 6s linear infinite;
+}
+
+/* --------------------------------------------------
+   PINK / PURPLE GLOW UTILITIES
+-------------------------------------------------- */
+
+.pink-glow {
+  box-shadow:
+    0 0 20px rgba(255, 79, 163, 0.16),
+    0 0 50px rgba(255, 79, 163, 0.08);
+}
+
+.purple-glow {
+  box-shadow:
+    0 0 20px rgba(185, 139, 255, 0.16),
+    0 0 50px rgba(185, 139, 255, 0.08);
+}
+
+.gradient-text {
+  background: linear-gradient(
+    110deg,
+    #ff4fa3,
+    #b98bff,
+    #4cc9ff
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* --------------------------------------------------
+   REDUCED MOTION ACCESSIBILITY
+-------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .grain,
+  .light-streak,
+  .shimmer-text {
+    animation: none !important;
+  }
+
+  .light-streak {
+    display: none;
+  }
+}
