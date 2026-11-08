@@ -22,9 +22,8 @@ import {
  * Resume section
  *
  * Displays the resume preview, professional statistics,
- * and view/download actions.
+ * and actions for both professional resumes.
  */
-
 export default function ResumeSection({
   onView,
 }: {
@@ -36,7 +35,7 @@ export default function ResumeSection({
     <>
       <SectionHeading
         kicker="Professional Profile"
-        title="My Resume"
+        title="My Resumes"
       />
 
       <div className="gutter grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-14">
@@ -74,54 +73,53 @@ export default function ResumeSection({
           </p>
 
           <p className="mt-3 text-sm leading-relaxed text-mist">
-            Explore my education, professional experience,
-            technical projects, achievements and{' '}
-            {certifications.length} certifications.
-            View my resume online or download a copy.
+            Explore my education, professional experience, technical projects,
+            achievements and {certifications.length} certifications. Choose the
+            resume that best matches the role you are hiring for.
           </p>
 
           {/* Resume actions */}
-<div className="mt-6 flex flex-col gap-3">
-  <Magnetic className="w-full">
-    <button
-      type="button"
-      data-cursor="view"
-      onClick={onView}
-      className="flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-gradient-to-r from-pink-500 to-purple-600 px-6 text-[15px] font-bold text-white shadow-[0_0_20px_rgba(236,72,153,0.18)] transition hover:from-pink-400 hover:to-purple-500"
-    >
-      Explore My Resumes
-      <span aria-hidden>↗</span>
-    </button>
-  </Magnetic>
+          <div className="mt-6 flex flex-col gap-3">
+            <Magnetic className="w-full">
+              <button
+                type="button"
+                data-cursor="view"
+                onClick={onView}
+                className="flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-gradient-to-r from-pink-500 to-purple-600 px-6 text-[15px] font-bold text-white shadow-[0_0_20px_rgba(236,72,153,0.18)] transition hover:from-pink-400 hover:to-purple-500"
+              >
+                Explore My Resumes
+                <span aria-hidden>↗</span>
+              </button>
+            </Magnetic>
 
-  <div className="grid gap-3 sm:grid-cols-2">
-    <Magnetic className="w-full">
-      <a
-        href="/assets/Yogeswari_Boreddi_Zoho_Developer_Resume.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-cursor="link"
-        className="glass flex min-h-12 w-full items-center justify-center gap-2 rounded-md border border-white/10 px-4 text-sm font-semibold text-bone transition hover:border-pink-400/40 hover:bg-white/15"
-      >
-        View Zoho Resume
-        <span aria-hidden>↗</span>
-      </a>
-    </Magnetic>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Magnetic className="w-full">
+                <a
+                  href="/assets/Yogeswari_Boreddi_Zoho_Developer_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="link"
+                  className="glass flex min-h-12 w-full items-center justify-center gap-2 rounded-md border border-white/10 px-4 text-sm font-semibold text-bone transition hover:border-pink-400/40 hover:bg-white/15"
+                >
+                  Zoho Resume
+                  <span aria-hidden>↗</span>
+                </a>
+              </Magnetic>
 
-    <Magnetic className="w-full">
-      <a
-        href="/assets/Yogeswari_Boreddi_Python_Full_Stack_Developer_Resume.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-cursor="link"
-        className="glass flex min-h-12 w-full items-center justify-center gap-2 rounded-md border border-white/10 px-4 text-sm font-semibold text-bone transition hover:border-pink-400/40 hover:bg-white/15"
-      >
-        View Python Resume
-        <span aria-hidden>↗</span>
-      </a>
-    </Magnetic>
-  </div>
-</div>
+              <Magnetic className="w-full">
+                <a
+                  href="/assets/Yogeswari_Boreddi_Python_Full_Stack_Developer_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="link"
+                  className="glass flex min-h-12 w-full items-center justify-center gap-2 rounded-md border border-white/10 px-4 text-sm font-semibold text-bone transition hover:border-pink-400/40 hover:bg-white/15"
+                >
+                  Python Resume
+                  <span aria-hidden>↗</span>
+                </a>
+              </Magnetic>
+            </div>
+          </div>
 
           {/* Statistics */}
           <dl className="mt-8 grid grid-cols-3 gap-px overflow-hidden rounded-xl bg-white/10 text-center">
@@ -162,7 +160,6 @@ export default function ResumeSection({
 /**
  * Responsive resume preview.
  */
-
 function CollapsibleSheet() {
   const [open, setOpen] = useState(false);
 
@@ -194,7 +191,6 @@ function CollapsibleSheet() {
 /**
  * Reusable resume section heading.
  */
-
 function H({
   children,
 }: {
@@ -210,7 +206,6 @@ function H({
 /**
  * Complete resume sheet.
  */
-
 export function ResumeSheet() {
   return (
     <article className="relative overflow-hidden rounded-2xl bg-[linear-gradient(180deg,#15111b,#0c0c11)] p-6 ring-1 ring-white/10 sm:p-10">
@@ -236,7 +231,7 @@ export function ResumeSheet() {
             {' · '}
             Zoho Business Applications
             {' · '}
-            Agentic AI
+            Python Full Stack Development
           </p>
         </div>
 
@@ -277,7 +272,6 @@ export function ResumeSheet() {
       <div className="grid gap-x-10 md:grid-cols-[1.4fr_1fr]">
         {/* Left column */}
         <div>
-          {/* Education */}
           <H>Education</H>
 
           {education.map((item) => (
@@ -305,7 +299,6 @@ export function ResumeSheet() {
             </div>
           ))}
 
-          {/* Work experience */}
           <H>Professional Experience</H>
 
           {experience.map((item) => (
@@ -337,7 +330,6 @@ export function ResumeSheet() {
             </div>
           ))}
 
-          {/* Projects */}
           <H>Projects</H>
 
           {projects.map((item) => (
@@ -364,7 +356,6 @@ export function ResumeSheet() {
 
         {/* Right column */}
         <div>
-          {/* Skills */}
           <H>Technical Skills</H>
 
           <div className="space-y-2">
@@ -384,7 +375,6 @@ export function ResumeSheet() {
             ))}
           </div>
 
-          {/* Achievements */}
           <H>Achievements & Recognition</H>
 
           <ul className="space-y-2">
@@ -403,7 +393,6 @@ export function ResumeSheet() {
             ))}
           </ul>
 
-          {/* Certifications */}
           <H>Certifications</H>
 
           <ul className="space-y-2">

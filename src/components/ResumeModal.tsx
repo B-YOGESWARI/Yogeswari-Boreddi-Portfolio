@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-
 import { motion } from 'framer-motion';
 
 import { profile } from '../data/portfolio';
@@ -28,6 +27,11 @@ const resumes = [
   },
 ];
 
+/**
+ * Full-screen resume viewer.
+ *
+ * Allows recruiters to select and view either professional resume.
+ */
 export default function ResumeModal({
   onClose,
 }: {
@@ -38,6 +42,7 @@ export default function ResumeModal({
   const small = useMedia('(max-width: 767px)');
   const [selectedResume, setSelectedResume] = useState(resumes[0]);
 
+  // Escape key closes the resume viewer
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
